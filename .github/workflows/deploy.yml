@@ -1,0 +1,95 @@
+# Build & Deploy
+#
+# On every push to `main` (or when run manually from the Actions tab) this workflow:
+#   1. Builds the site into ONE self-contained file: dist/index.html
+#   2. Attaches that index.html to the run — download it from
+#      Actions → (latest run) → Artifacts → "index.html"
+#   3. Publishes the site to GitHub Pages, but only if Pages is enabled with
+#      Settings → Pages → Source = "GitHub Actions".
+#      If Pages is off, the deploy is skipped and the run still passes, so this
+#      file is safe to keep even if you only host on Vercel.
+
+name: Build & Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build site
+    runs-on: ubuntu-latest
+    outputs:
+      pages-enabled: ${{ steps.pages.outputs.enabled }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install --no-audit --no-fund
+          fi
+
+      - name: Build (creates a single self-contained dist/index.html)
+        run: npm run build
+
+      - name: Attach index.html to this run
+        uses: actions/upload-artifact@v7
+        with:
+          path: dist/index.html
+          archive: false
+          if-no-files-found: error
+
+      - name: Check GitHub Pages settings
+        id: pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          build_type="$(gh api "repos/${GITHUB_REPOSITORY}/pages" --jq '.build_type' 2>/dev/null || true)"
+          if [ "$build_type" = "workflow" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "::notice title=GitHub Pages deploy skipped::To publish on GitHub Pages, open Settings → Pages and set Source to GitHub Actions, then re-run this workflow. Not needed if you only use Vercel."
+          fi
+
+      - name: Configure Pages
+        if: steps.pages.outputs.enabled == 'true'
+        uses: actions/configure-pages@v6
+
+      - name: Upload Pages artifact
+        if: steps.pages.outputs.enabled == 'true'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ./dist
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    if: needs.build.outputs.pages-enabled == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v5

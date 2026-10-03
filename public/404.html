@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#FAF7F0" />
+    <title>Page not found — Shopkeeper AI</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23657153'/%3E%3Cpath d='M9 6.5h9.5l4.5 4.5v14.5H9z' fill='%23FAF7F0' fill-opacity='.18' stroke='%23FAF7F0' stroke-width='1.9' stroke-linejoin='round'/%3E%3Cpath d='M18.5 6.5V11H23' fill='none' stroke='%23FAF7F0' stroke-width='1.9' stroke-linejoin='round'/%3E%3Cpath d='M12 15h5M12 19h7' stroke='%23FAF7F0' stroke-width='1.9' stroke-linecap='round'/%3E%3Cpath d='M24 20.4l1.1 2.4 2.4 1.1-2.4 1.1-1.1 2.4-1.1-2.4-2.4-1.1 2.4-1.1z' fill='%23F28C45'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Sans:wght@400;600&family=JetBrains+Mono:wght@500&family=Noto+Nastaliq+Urdu:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --olive: #657153;
+        --olive-deep: #363d2b;
+        --ink: #22271d;
+        --muted: #6d7164;
+        --ivory: #faf7f0;
+        --line: #e5dfd1;
+        --flame: #c0561a;
+        --flame-dark: #a2470f;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        min-height: 100%;
+        margin: 0;
+      }
+      body {
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+        padding: 24px;
+        background-color: var(--ivory);
+        background-image:
+          radial-gradient(900px 420px at 90% -10%, rgba(168, 184, 159, 0.32), transparent 60%),
+          repeating-linear-gradient(to bottom, transparent 0 31px, rgba(101, 113, 83, 0.08) 31px 32px);
+        color: var(--ink);
+        font-family: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      main {
+        position: relative;
+        width: 100%;
+        max-width: 440px;
+        overflow: hidden;
+        padding: 32px 28px 30px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: #fff;
+        box-shadow:
+          0 1px 2px rgba(34, 39, 29, 0.04),
+          0 24px 48px -24px rgba(34, 39, 29, 0.35);
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-size: 15px;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+        text-decoration: none;
+      }
+      .brand b {
+        color: var(--olive);
+      }
+      .mark {
+        display: grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 7px;
+        background: var(--olive);
+      }
+      .code {
+        margin: 30px 0 0;
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-size: 84px;
+        font-weight: 800;
+        line-height: 0.9;
+        letter-spacing: -0.06em;
+        color: var(--olive);
+      }
+      h1 {
+        margin: 16px 0 0;
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-size: 26px;
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+      }
+      .urdu {
+        margin: 4px 0 0;
+        direction: rtl;
+        text-align: left;
+        font-family: "Noto Nastaliq Urdu", serif;
+        font-size: 17px;
+        line-height: 2.2;
+        color: var(--olive);
+      }
+      p.lead {
+        margin: 6px 0 0;
+        font-size: 15.5px;
+        line-height: 1.6;
+        color: var(--muted);
+      }
+      .ledger {
+        margin-top: 22px;
+        border-top: 1px dashed var(--line);
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 10px 0;
+        border-bottom: 1px dashed var(--line);
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .row span:last-child {
+        overflow: hidden;
+        max-width: 60%;
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        color: var(--ink);
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      .row .flag {
+        color: var(--flame);
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        height: 50px;
+        margin-top: 26px;
+        border-radius: 6px;
+        background: var(--flame);
+        color: #fff;
+        font-size: 15.5px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background-color 0.2s ease;
+      }
+      .btn:hover {
+        background: var(--flame-dark);
+      }
+      .btn:focus-visible,
+      .brand:focus-visible {
+        outline: 2px solid var(--olive);
+        outline-offset: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a class="brand home-link" href="/" aria-label="Shopkeeper AI — home">
+        <span class="mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="22" height="22" fill="none">
+            <path
+              d="M5 4.5h14.5L26 11v16.5H5z"
+              fill="#FAF7F0"
+              fill-opacity=".14"
+              stroke="#FAF7F0"
+              stroke-width="1.9"
+              stroke-linejoin="round"
+            />
+            <path d="M19.5 4.5V11H26" stroke="#FAF7F0" stroke-width="1.9" stroke-linejoin="round" />
+            <path d="M9 15h7M9 19h10" stroke="#FAF7F0" stroke-width="1.9" stroke-linecap="round" />
+            <path d="M23.2 20.6l1.1 2.4 2.4 1.1-2.4 1.1-1.1 2.4-1.1-2.4-2.4-1.1 2.4-1.1z" fill="#F28C45" />
+          </svg>
+        </span>
+        <span>SHOPKEEPER <b>AI</b></span>
+      </a>
+
+      <p class="code" aria-hidden="true">404</p>
+      <h1>This page isn't in the khata.</h1>
+      <p class="urdu" lang="ur">یہ صفحہ نہیں ملا</p>
+      <p class="lead">The link may be old or mistyped. Nothing is lost — let's take you back to the main page.</p>
+
+      <div class="ledger" aria-label="Request details">
+        <div class="row"><span>Page requested</span><span id="path">—</span></div>
+        <div class="row"><span>Status</span><span class="flag">Not found</span></div>
+      </div>
+
+      <a class="btn home-link" href="/">Back to Shopkeeper AI &rarr;</a>
+    </main>
+
+    <script>
+      (function () {
+        var pathEl = document.getElementById("path");
+        if (pathEl) pathEl.textContent = location.pathname + location.search;
+
+        // GitHub Pages project sites live under /<repo>/ — point "home" there when it exists.
+        var first = location.pathname.split("/")[1];
+        if (/\.github\.io$/i.test(location.hostname) && first && window.fetch) {
+          var base = "/" + first + "/";
+          fetch(base, { method: "HEAD" })
+            .then(function (res) {
+              if (!res.ok) return;
+              var links = document.querySelectorAll(".home-link");
+              for (var i = 0; i < links.length; i++) links[i].setAttribute("href", base);
+            })
+            .catch(function () {});
+        }
+      })();
+    </script>
+  </body>
+</html>
